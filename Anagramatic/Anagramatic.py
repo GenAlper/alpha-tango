@@ -3,17 +3,11 @@ def fileToList(path):
 
     file = open(path, 'r')
     for line in file:
-        words.append(line)
+        words.append(line[:-1])
 
     return words
 
 def isAnagram(firstWord, secondWord):
-    firstWord_chars = list(firstWord)
-    firstWord_chars.sort()
-    secondWord_chars = list(secondWord)
-    secondWord_chars.sort()
-
-    #return (list(firstWord).sort() == list(secondWord).sort())
     return (sorted(firstWord) == sorted(secondWord))
 
 def accumulateAnagrams():
@@ -23,15 +17,17 @@ def accumulateAnagrams():
     for line in words:
          for otherLine in words:
             if (line != otherLine):
-                if (anagrams.count(line) == 0):
+                if (anagrams.count((otherLine, line)) == 0):
                     if (isAnagram(line, otherLine)):
-                        anagrams.append(line)
+                        anagrams.append((line, otherLine))
 
-    anagrams.sort()
-    return anagrams
+                     
+    return sorted(anagrams, key=lambda t: len(t[1]))
 
 
-for anagram in accumulateAnagrams():
-    print(anagram, end='')
 
+anagrams = accumulateAnagrams()
+for anagram in anagrams:
+    print("%s <-> %s" % anagram)
+print("Number of anagrams found: ", len(anagrams))
 
