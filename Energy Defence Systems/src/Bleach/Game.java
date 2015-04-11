@@ -14,7 +14,6 @@ import Bleach.InputManager.Receptionist.KeyBinding;
 import Bleach.Loader.Discette;
 import Bleach.PhysicsEngine.CollisionEngine.CollisionListener;
 import Bleach.PhysicsEngine.Force.ExternalForce;
-import Bleach.SoundEngine.Boom;
 
 /*
  * This is for testing the game engine.
@@ -41,9 +40,9 @@ public class Game {
 		myGame.setFPS(60);
 
 		myGame.setSize(800, 600);
-		myGame.setTitle("My super game!");
+		myGame.setTitle("Energy Defence Systems");
 
-		Level firstLevel = new Level(2800, 1200, "Town");
+		Level firstLevel = new Level(2800, 1200, "Space");
 
 		EntityBlob blobby = new EntityBlob(myGame.getSprite("blob"), 200, 264);
 		Player player = new Player(myGame.getSprite("mushi"), 100, 100);
@@ -51,8 +50,6 @@ public class Game {
 		firstLevel.addPlayer(player);
 
 		firstLevel.levelBuilder(myGame.loadLevel("assets/levels/level1.json"));
-
-		// firstLevel.setMusicTrack("melody7");
 
 		myGame.addLevel(firstLevel);
 
